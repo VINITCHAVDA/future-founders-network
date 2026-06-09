@@ -1,22 +1,23 @@
 function EventCard({ event, onRegister, registering }) {
   const date = event.event_date ? new Date(event.event_date).toLocaleDateString() : 'Date coming soon'
+  const isPast = event.status === 'completed'
 
   return (
-    <article className="card event-card">
+    <article className={`card event-card professional-card ${isPast ? 'is-past' : ''}`}>
       <div className="card-topline">
-        <span className="badge">{event.status || 'upcoming'}</span>
-        <span>{event.chapter?.name || 'Future Founders'}</span>
+        <span className={`badge ${isPast ? 'badge-muted' : 'badge-gold'}`}>{event.status || 'upcoming'}</span>
+        <span>{event.type || event.chapter?.name || 'Founder Event'}</span>
       </div>
       <h3>{event.title}</h3>
-      <p>{event.description}</p>
-      <div className="meta-grid">
+      <p>{event.description || 'A curated event for learning, networking, and startup growth.'}</p>
+      <div className="event-meta">
         <span>📅 {date}</span>
         <span>⏰ {event.event_time || 'TBA'}</span>
-        <span>📍 {event.location}</span>
+        <span>📍 {event.location || 'Online / Campus'}</span>
       </div>
       {onRegister && (
-        <button className="btn btn-primary" type="button" onClick={() => onRegister(event.id)} disabled={registering}>
-          {registering ? 'Registering...' : 'Register Event'}
+        <button className="btn btn-primary" type="button" onClick={() => onRegister(event.id)} disabled={registering || isPast}>
+          {isPast ? 'View Details' : registering ? 'Registering...' : 'Register / View Details'}
         </button>
       )}
     </article>
