@@ -522,6 +522,131 @@ th { background: rgba(255, 255, 255, 0.04); color: var(--gold); font-size: 0.86r
   .stat-number { font-size: 1.9rem; }
 }
 
+
+/* Responsive hardening for all public pages and shared components. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { max-width: 100%; overflow-x: hidden; width: 100%; }
+#root { min-height: 100vh; }
+main, header, footer, section, article, aside, nav, form { max-width: 100%; }
+h1, h2, h3, p, a, span, strong, label, button, input, textarea { overflow-wrap: anywhere; }
+button, .btn { align-items: center; max-width: 100%; min-height: 44px; text-align: center; white-space: normal; }
+input, textarea, select { max-width: 100%; min-width: 0; }
+textarea { resize: vertical; }
+.alert, .validation-box, .footer-contact-list p { overflow-wrap: anywhere; }
+.table-card { overflow-x: auto; }
+.navbar { max-width: 100%; min-width: 0; width: 100%; }
+.brand { min-width: 0; }
+.brand span:last-child { min-width: 0; }
+.nav-panel { min-width: 0; }
+.nav-actions { flex-shrink: 0; }
+.hero-content, .auth-copy, .section-heading, .page-header, .professional-card, .post-feed-card, .panel-card, .footer-card { min-width: 0; }
+.card-topline, .post-author-row, .event-meta, .metric-row, .post-actions, .tag-row, .footer-socials { min-width: 0; }
+.avatar, .avatar.small, .stat-icon, .brand-mark { flex-shrink: 0; }
+.compact-feed { display: grid; }
+.create-post-panel textarea { min-height: 128px; }
+
+@media (max-width: 1440px) {
+  .section, .page-shell, .hero-section { max-width: 1320px; }
+}
+
+@media (max-width: 1366px) {
+  .section, .page-shell, .hero-section { padding-inline: clamp(18px, 4vw, 56px); }
+  .stats-section, .site-footer { padding-inline: clamp(18px, 4vw, 56px); }
+}
+
+@media (max-width: 1200px) {
+  .hero-section { grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.92fr); }
+  .grid.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-grid { grid-template-columns: minmax(0, 1fr) repeat(3, minmax(160px, 0.75fr)); }
+}
+
+@media (max-width: 1024px) {
+  .navbar { padding-block: 12px; }
+  .nav-panel { max-height: calc(100dvh - 86px); overflow-y: auto; }
+  .nav-actions { flex-shrink: 1; }
+  .hero-section { align-items: start; grid-template-columns: 1fr; }
+  .hero-spotlight { max-width: 720px; width: 100%; }
+  .grid.three, .directory-grid, .compact-feed { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats-cards, .stats-grid, .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feed-layout, .split-section, .auth-card-wrap { grid-template-columns: 1fr; }
+  .auth-card-wrap { justify-items: center; }
+  .auth-copy { margin-inline: auto; }
+}
+
+@media (max-width: 768px) {
+  .section, .page-shell, .hero-section { padding-inline: 20px; }
+  .section, .page-shell { padding-block: 52px; }
+  .hero-section { padding-block: 58px; }
+  .brand span:last-child { max-width: 210px; }
+  .hero-content, .hero-copy, .section-copy, .page-intro { max-width: 100%; }
+  .mission-panel, .directory-header { grid-template-columns: 1fr; }
+  .directory-header { align-items: stretch; }
+  .filter-pills { justify-content: flex-start; }
+  .form-grid, .detail-grid, .inline-form, .inline-form.compact { grid-template-columns: 1fr; }
+  .span-two, .inline-form textarea, .inline-form button, .inline-form.compact button { grid-column: auto; }
+  .auth-card-wrap { gap: 22px; }
+  .auth-copy { text-align: left; }
+  .auth-benefits { margin-inline: 0; }
+}
+
+@media (max-width: 600px) {
+  body { min-width: 0; }
+  .section, .page-shell, .hero-section, .auth-page { padding-inline: 16px; }
+  .section, .page-shell, .hero-section, .auth-page { padding-block: 40px; }
+  .stats-section, .site-footer { padding-inline: 16px; }
+  .grid.three, .grid.four, .directory-grid, .compact-feed, .stats-cards, .stats-grid, .footer-grid { grid-template-columns: 1fr; }
+  .hero-actions, .quick-actions, .filter-pills { align-items: stretch; flex-direction: column; }
+  .hero-actions .btn, .quick-actions .btn, .filter-pills button, .nav-actions .btn { width: 100%; }
+  .nav-panel { left: 12px; padding: 14px; right: 12px; }
+  .nav-links a { min-height: 44px; padding: 11px 12px; }
+  .post-author-row { align-items: flex-start; }
+  .event-meta span, .metric-row span, .post-actions span, .tag-row span { flex: 1 1 auto; }
+  .form-card.auth-card, .form-card { max-width: 100%; width: 100%; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(2rem, 13vw, 3rem); line-height: 1; }
+  h2 { font-size: clamp(1.45rem, 9vw, 2rem); }
+  h3 { font-size: 1.08rem; }
+  .navbar { gap: 10px; padding-inline: 14px; }
+  .brand { gap: 8px; }
+  .brand-mark { border-radius: 12px; height: 38px; width: 38px; }
+  .brand span:last-child { max-width: 170px; }
+  .menu-toggle { height: 40px; width: 42px; }
+  .hero-section { padding-top: 42px; }
+  .hero-spotlight, .mission-panel, .panel-card, .search-panel, .story-card, .feature-card, .empty-state, .professional-card, .post-feed-card, .stat-card, .form-card, .footer-card { border-radius: 18px; padding: 18px; }
+  .post-image { height: 180px; }
+  .footer-socials a { flex: 1 1 auto; justify-content: center; text-align: center; }
+}
+
+@media (max-width: 390px) {
+  .section, .page-shell, .hero-section, .auth-page, .stats-section, .site-footer { padding-inline: 14px; }
+  .brand span:last-child { max-width: 148px; }
+  .nav-panel { left: 10px; right: 10px; }
+  .stat-number { font-size: 1.95rem; }
+  .auth-benefits span, .event-meta span, .metric-row span, .post-actions span, .tag-row span { border-radius: 14px; width: 100%; }
+}
+
+@media (max-width: 360px) {
+  .section, .page-shell, .hero-section, .auth-page, .stats-section, .site-footer { padding-inline: 12px; }
+  .navbar { padding-inline: 10px; }
+  .brand span:last-child { max-width: 128px; }
+  .card, .form-card, .table-card, .feature-card, .story-card, .professional-card, .post-feed-card, .empty-state, .footer-card, .stat-card { padding: 15px; }
+  .btn { padding-inline: 12px; }
+}
+
+@media (max-width: 320px) {
+  .section, .page-shell, .hero-section, .auth-page, .stats-section, .site-footer { padding-inline: 10px; }
+  .navbar { gap: 8px; }
+  .brand span:last-child { max-width: 106px; }
+  .brand-mark { height: 36px; width: 36px; }
+  .menu-toggle { height: 38px; width: 40px; }
+  .hero-actions, .quick-actions, .nav-actions, .filter-pills { gap: 8px; }
+  .stat-number { font-size: 1.75rem; }
+  input, textarea, select { padding-inline: 11px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }

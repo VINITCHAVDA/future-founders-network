@@ -8,6 +8,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
+  const menuId = 'primary-navigation'
   const navClass = (staggerClass) => ({ isActive }) => `${staggerClass} ${isActive ? 'active' : ''}`
 
   const handleLogout = async () => {
@@ -30,6 +31,7 @@ function Navbar() {
 
       <button
         aria-label="Toggle navigation menu"
+        aria-controls={menuId}
         aria-expanded={menuOpen}
         className={`menu-toggle ${menuOpen ? 'active' : ''}`}
         type="button"
@@ -40,7 +42,7 @@ function Navbar() {
         <span></span>
       </button>
 
-      <div className={`nav-panel ${menuOpen ? 'open' : ''}`}>
+      <div className={`nav-panel ${menuOpen ? 'open' : ''}`} id={menuId}>
         <nav className="nav-links" aria-label="Primary navigation">
           <NavLink className={navClass('stagger-1')} to="/" onClick={closeMenu}>Home</NavLink>
           <NavLink className={navClass('stagger-2')} to="/about" onClick={closeMenu}>About</NavLink>
