@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import PageHeader from '../components/PageHeader'
+import StatusMessage from '../components/StatusMessage'
 import api, { getApiError } from '../services/api'
 
 function Membership() {
@@ -23,10 +25,10 @@ function Membership() {
   return (
     <section className="page-shell narrow">
       <form className="form-card wide" onSubmit={handleSubmit}>
-        <p className="eyebrow">Membership</p>
-        <h1>Apply for Future Founders membership</h1>
-        <p>Membership applications are reviewed by an admin before approval.</p>
-        {message && <p className="alert">{message}</p>}
+        <PageHeader eyebrow="Membership" title="Apply for Future Founders membership">
+          Membership applications are reviewed by an admin before approval.
+        </PageHeader>
+        <StatusMessage>{message}</StatusMessage>
         <label>Plan Name<input value={planName} onChange={(e) => setPlanName(e.target.value)} required /></label>
         <button className="btn btn-primary" type="submit" disabled={loading}>{loading ? 'Applying...' : 'Apply Now'}</button>
       </form>

@@ -1,11 +1,11 @@
+import PageHeader from '../components/PageHeader'
+
 function About() {
   return (
     <section className="page-shell narrow">
-      <p className="eyebrow">About FFN</p>
-      <h1>Designed for students who want to learn business by building.</h1>
-      <p>
+      <PageHeader eyebrow="About FFN" title="Designed for students who want to learn business by building.">
         Future Founders Network is a campus-friendly platform for discovering chapters, attending events, building founder profiles, publishing updates, and forming meaningful startup connections.
-      </p>
+      </PageHeader>
       <div className="feature-list">
         <div><strong>Profiles</strong><span>Show your college, course, skills, bio, and links.</span></div>
         <div><strong>Chapters</strong><span>Join local entrepreneurship communities.</span></div>

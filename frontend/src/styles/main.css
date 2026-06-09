@@ -64,7 +64,9 @@ p { color: var(--muted); line-height: 1.7; }
 
 .section, .page-shell { padding: clamp(32px, 5vw, 64px) clamp(18px, 5vw, 72px); }
 .page-shell.narrow { margin: 0 auto; max-width: 920px; }
-.section-heading { margin-bottom: 22px; }
+.section-heading, .page-header { margin-bottom: 22px; }
+.page-intro { max-width: 760px; }
+.notice-section { padding-bottom: 0; padding-top: 0; }
 .grid { display: grid; gap: 20px; }
 .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .card, .form-card, .table-card, .stat-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: 22px; }

@@ -28,7 +28,13 @@ function Navbar() {
         <NavLink to="/chapters">Chapters</NavLink>
         <NavLink to="/events">Events</NavLink>
         <NavLink to="/posts">Posts</NavLink>
-        {isAuthenticated() && <NavLink to="/dashboard">Dashboard</NavLink>}
+        {isAuthenticated() && (
+          <>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/membership">Membership</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
+          </>
+        )}
         {isAdmin() && <NavLink to="/admin/dashboard">Admin</NavLink>}
       </nav>
 
