@@ -5,11 +5,11 @@ import SectionHeader from '../components/SectionHeader'
 function About() {
   return (
     <>
-      <section className="page-shell about-hero">
+      <section className="page-shell about-hero animate-fade-up">
         <PageHeader eyebrow="About Future Founders Network" title="A student-first platform for building real startup momentum.">
           Future Founders Network helps students move beyond inspiration and into action through chapters, events, mentorship, community posts, and membership opportunities.
         </PageHeader>
-        <div className="mission-panel">
+        <div className="mission-panel animate-scale-in stagger-2">
           <div>
             <p className="eyebrow">Mission</p>
             <h2>Make entrepreneurship accessible to every student with ambition.</h2>
@@ -23,24 +23,24 @@ function About() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section animate-fade-up">
         <SectionHeader eyebrow="Why this platform?" title="Built for the messy early stage" align="center">
           Most students do not need more theory. They need people, practice, feedback, and a clear place to show what they are building.
         </SectionHeader>
         <div className="grid three">
-          <article className="story-card"><h3>Find your people</h3><p>Join chapters and meet students who care about startups, business, design, engineering, marketing, and operations.</p></article>
-          <article className="story-card"><h3>Learn by doing</h3><p>Attend events, practice pitching, publish updates, and get feedback while your idea is still flexible.</p></article>
-          <article className="story-card"><h3>Grow with structure</h3><p>Profiles, posts, memberships, and admin-managed chapters help the community stay organized and useful.</p></article>
+          <article className="story-card animate-scale-in stagger-1"><h3>Find your people</h3><p>Join chapters and meet students who care about startups, business, design, engineering, marketing, and operations.</p></article>
+          <article className="story-card animate-scale-in stagger-2"><h3>Learn by doing</h3><p>Attend events, practice pitching, publish updates, and get feedback while your idea is still flexible.</p></article>
+          <article className="story-card animate-scale-in stagger-3"><h3>Grow with structure</h3><p>Profiles, posts, memberships, and admin-managed chapters help the community stay organized and useful.</p></article>
         </div>
       </section>
 
-      <section className="section alt-section">
+      <section className="section alt-section animate-fade-up">
         <SectionHeader eyebrow="Our values" title="What guides the network" align="center" />
         <div className="grid four">
-          <FeatureCard icon="🌐" title="Community">A welcoming space for students across backgrounds, colleges, and skill levels.</FeatureCard>
-          <FeatureCard icon="📈" title="Growth">Every event, post, and connection should help members become better builders.</FeatureCard>
-          <FeatureCard icon="💡" title="Innovation">We encourage practical experiments, creative ideas, and thoughtful problem solving.</FeatureCard>
-          <FeatureCard icon="🏆" title="Leadership">Students learn to lead chapters, teams, events, and startup initiatives.</FeatureCard>
+          <FeatureCard icon="🌐" title="Community" animationClass="stagger-1">A welcoming space for students across backgrounds, colleges, and skill levels.</FeatureCard>
+          <FeatureCard icon="📈" title="Growth" animationClass="stagger-2">Every event, post, and connection should help members become better builders.</FeatureCard>
+          <FeatureCard icon="💡" title="Innovation" animationClass="stagger-3">We encourage practical experiments, creative ideas, and thoughtful problem solving.</FeatureCard>
+          <FeatureCard icon="🏆" title="Leadership" animationClass="stagger-4">Students learn to lead chapters, teams, events, and startup initiatives.</FeatureCard>
         </div>
       </section>
     </>

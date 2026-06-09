@@ -45,19 +45,19 @@ function Home() {
 
   return (
     <>
-      <section className="hero-section startup-hero">
+      <section className="hero-section startup-hero animate-fade-up">
         <div className="hero-content">
           <p className="eyebrow">Student Startup Ecosystem</p>
-          <h1>Build your network. Launch your future.</h1>
-          <p className="hero-copy">
+          <h1 className="animate-fade-up stagger-1">Build your network. Launch your future.</h1>
+          <p className="hero-copy animate-fade-up stagger-2">
             Future Founders Network connects ambitious students with chapters, events, mentors, startup resources, and a trusted community feed.
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions animate-fade-up stagger-3">
             <Link className="btn btn-primary" to="/register">Join Network</Link>
             <Link className="btn btn-outline" to="/chapters">Explore Chapters</Link>
           </div>
         </div>
-        <div className="hero-spotlight">
+        <div className="hero-spotlight animate-scale-in stagger-4">
           <span className="spotlight-label">Live community</span>
           <h2>Where student founders meet co-founders, mentors, and early supporters.</h2>
           <div className="mini-list">
@@ -72,37 +72,37 @@ function Home() {
 
       {notice && <section className="section notice-section"><p className="alert">{notice}</p></section>}
 
-      <section className="section">
+      <section className="section animate-fade-up">
         <SectionHeader eyebrow="Why join" title="Everything a student founder needs to start smarter" align="center">
           Learn with peers, meet future teammates, and turn ideas into practical startup experiments.
         </SectionHeader>
         <div className="grid four">
-          <FeatureCard icon="🤝" title="Networking">Meet founders, operators, creators, and students from nearby campuses.</FeatureCard>
-          <FeatureCard icon="🎤" title="Events">Discover workshops, pitch nights, panels, and demo days built for students.</FeatureCard>
-          <FeatureCard icon="🧭" title="Mentorship">Find guidance from chapter leaders, alumni, and startup ecosystem partners.</FeatureCard>
-          <FeatureCard icon="🚀" title="Startup Support">Share updates, get feedback, validate ideas, and build momentum.</FeatureCard>
+          <FeatureCard icon="🤝" title="Networking" animationClass="stagger-1">Meet founders, operators, creators, and students from nearby campuses.</FeatureCard>
+          <FeatureCard icon="🎤" title="Events" animationClass="stagger-2">Discover workshops, pitch nights, panels, and demo days built for students.</FeatureCard>
+          <FeatureCard icon="🧭" title="Mentorship" animationClass="stagger-3">Find guidance from chapter leaders, alumni, and startup ecosystem partners.</FeatureCard>
+          <FeatureCard icon="🚀" title="Startup Support" animationClass="stagger-4">Share updates, get feedback, validate ideas, and build momentum.</FeatureCard>
         </div>
       </section>
 
-      <section className="section split-section">
+      <section className="section split-section animate-fade-up">
         <div>
           <SectionHeader eyebrow="Chapters" title="Find your local startup circle" />
           <div className="grid stacked">
-            {chapters.map((chapter) => <ChapterCard key={chapter.id} chapter={chapter} />)}
+            {chapters.map((chapter, index) => <ChapterCard key={chapter.id} chapter={chapter} animationClass={`stagger-${index + 1}`} />)}
           </div>
         </div>
         <div>
           <SectionHeader eyebrow="Upcoming events" title="Learn and connect this month" />
           <div className="grid stacked">
-            {events.map((event) => <EventCard key={event.id} event={event} />)}
+            {events.map((event, index) => <EventCard key={event.id} event={event} animationClass={`stagger-${index + 1}`} />)}
           </div>
         </div>
       </section>
 
-      <section className="section alt-section">
+      <section className="section alt-section animate-fade-up">
         <SectionHeader eyebrow="Community feed" title="Latest founder conversations" align="center" />
         <div className="feed-grid compact-feed">
-          {posts.map((post) => <PostCard key={post.id} post={post} />)}
+          {posts.map((post, index) => <PostCard key={post.id} post={post} animationClass={`stagger-${index + 1}`} />)}
         </div>
       </section>
     </>

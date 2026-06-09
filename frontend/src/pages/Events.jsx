@@ -48,12 +48,12 @@ function Events() {
   }
 
   return (
-    <section className="page-shell">
-      <div className="directory-header">
+    <section className="page-shell animate-fade-up">
+      <div className="directory-header animate-fade-up stagger-1">
         <SectionHeader eyebrow="Events" title="Attend high-signal startup events">
           Join workshops, mixers, pitch studios, mentor sessions, and demo days designed for student founders.
         </SectionHeader>
-        <div className="filter-pills" aria-label="Filter events">
+        <div className="filter-pills animate-scale-in stagger-2" aria-label="Filter events">
           {['all', 'upcoming', 'completed'].map((item) => (
             <button className={filter === item ? 'active' : ''} key={item} type="button" onClick={() => setFilter(item)}>
               {item}
@@ -66,8 +66,8 @@ function Events() {
 
       {visibleEvents.length ? (
         <div className="grid three directory-grid">
-          {visibleEvents.map((event) => (
-            <EventCard key={event.id} event={event} onRegister={handleRegister} registering={registeringId === event.id} />
+          {visibleEvents.map((event, index) => (
+            <EventCard key={event.id} event={event} onRegister={handleRegister} registering={registeringId === event.id} animationClass={`stagger-${(index % 4) + 1}`} />
           ))}
         </div>
       ) : (

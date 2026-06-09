@@ -1,9 +1,9 @@
-function EventCard({ event, onRegister, registering }) {
+function EventCard({ event, onRegister, registering, animationClass = '' }) {
   const date = event.event_date ? new Date(event.event_date).toLocaleDateString() : 'Date coming soon'
   const isPast = event.status === 'completed'
 
   return (
-    <article className={`card event-card professional-card ${isPast ? 'is-past' : ''}`}>
+    <article className={`card event-card professional-card animate-scale-in ${isPast ? 'is-past' : ''} ${animationClass}`}>
       <div className="card-topline">
         <span className={`badge ${isPast ? 'badge-muted' : 'badge-gold'}`}>{event.status || 'upcoming'}</span>
         <span>{event.type || event.chapter?.name || 'Founder Event'}</span>

@@ -1,10 +1,10 @@
-function PostCard({ post }) {
+function PostCard({ post, animationClass = '' }) {
   const author = post.user?.name || post.author || 'Student Founder'
   const role = post.role || post.user?.profile?.course || 'Founder Member'
   const tags = post.tags || ['Startup', 'Networking']
 
   return (
-    <article className="post-feed-card">
+    <article className={`post-feed-card animate-scale-in ${animationClass}`}>
       {post.image && <img className="post-image" src={post.image} alt={post.title} />}
       <div className="post-author-row">
         <span className="avatar small">{author.charAt(0)}</span>

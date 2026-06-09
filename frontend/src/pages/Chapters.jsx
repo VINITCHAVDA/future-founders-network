@@ -50,12 +50,12 @@ function Chapters() {
   }
 
   return (
-    <section className="page-shell">
-      <div className="directory-header">
+    <section className="page-shell animate-fade-up">
+      <div className="directory-header animate-fade-up stagger-1">
         <SectionHeader eyebrow="Chapters" title="Join a local founder community">
           Browse student-led startup chapters by city, community focus, and momentum. Each chapter helps members meet collaborators and attend curated events.
         </SectionHeader>
-        <div className="search-panel">
+        <div className="search-panel animate-scale-in stagger-2">
           <label htmlFor="chapter-search">Search chapters</label>
           <input id="chapter-search" placeholder="Search by name or city" value={search} onChange={(event) => setSearch(event.target.value)} />
         </div>
@@ -65,8 +65,8 @@ function Chapters() {
 
       {filteredChapters.length ? (
         <div className="grid three directory-grid">
-          {filteredChapters.map((chapter) => (
-            <ChapterCard key={chapter.id} chapter={chapter} onJoin={handleJoin} joining={joiningId === chapter.id} />
+          {filteredChapters.map((chapter, index) => (
+            <ChapterCard key={chapter.id} chapter={chapter} onJoin={handleJoin} joining={joiningId === chapter.id} animationClass={`stagger-${(index % 4) + 1}`} />
           ))}
         </div>
       ) : (

@@ -17,8 +17,8 @@ function StatsSection() {
       </div>
 
       <div className="stats-cards" aria-label="Future Founders Network statistics">
-        {stats.map((stat) => (
-          <article className="stat-card pro-stat-card" key={stat.label}>
+        {stats.map((stat, index) => (
+          <article className={`stat-card pro-stat-card animate-scale-in stagger-${index + 1}`} key={stat.label}>
             <span className="stat-icon" aria-hidden="true">{stat.icon}</span>
             <strong>{stat.value}</strong>
             <span>{stat.label}</span>

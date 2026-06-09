@@ -1,6 +1,6 @@
-function ChapterCard({ chapter, onJoin, joining }) {
+function ChapterCard({ chapter, onJoin, joining, animationClass = '' }) {
   return (
-    <article className="card chapter-card professional-card">
+    <article className={`card chapter-card professional-card animate-scale-in ${animationClass}`}>
       <div className="card-topline">
         <span className="badge badge-gold">{chapter.status || 'active'}</span>
         <span className="card-location">📍 {chapter.city || 'Global'}</span>

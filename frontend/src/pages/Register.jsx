@@ -61,7 +61,7 @@ function Register() {
   return (
     <section className="auth-page auth-animated">
       <div className="auth-card-wrap">
-        <div className="auth-copy">
+        <div className="auth-copy animate-fade-up stagger-1">
           <p className="eyebrow">Join the network</p>
           <h1>Create your founder profile.</h1>
           <p>
@@ -74,7 +74,7 @@ function Register() {
           </div>
         </div>
 
-        <form className="form-card auth-card" onSubmit={handleSubmit} noValidate>
+        <form className="form-card auth-card animate-scale-in stagger-2" onSubmit={handleSubmit} noValidate>
           <p className="eyebrow">Start building</p>
           <h2>Create student account</h2>
 

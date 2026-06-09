@@ -19,11 +19,11 @@ const socialLinks = ['LinkedIn', 'Instagram', 'GitHub']
 
 function Footer() {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer animate-fade-up">
       <div className="footer-accent-line" aria-hidden="true"></div>
 
       <div className="footer-grid">
-        <section className="footer-card footer-brand-card">
+        <section className="footer-card footer-brand-card animate-fade-up stagger-1">
           <Link className="brand footer-brand" to="/">
             <span className="brand-mark">FFN</span>
             <span>Future Founders Network</span>
@@ -40,7 +40,7 @@ function Footer() {
           </div>
         </section>
 
-        <section className="footer-card">
+        <section className="footer-card animate-fade-up stagger-2">
           <h3>Quick Links</h3>
           <nav className="footer-link-list" aria-label="Footer quick links">
             {quickLinks.map((link) => (
@@ -49,7 +49,7 @@ function Footer() {
           </nav>
         </section>
 
-        <section className="footer-card">
+        <section className="footer-card animate-fade-up stagger-3">
           <h3>Platform</h3>
           <nav className="footer-link-list" aria-label="Footer platform links">
             {platformLinks.map((link) => (
@@ -58,7 +58,7 @@ function Footer() {
           </nav>
         </section>
 
-        <section className="footer-card">
+        <section className="footer-card animate-fade-up stagger-4">
           <h3>Contact</h3>
           <div className="footer-contact-list">
             <p><span>Email</span> support@futurefounders.com</p>

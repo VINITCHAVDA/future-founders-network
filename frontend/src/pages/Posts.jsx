@@ -49,7 +49,7 @@ function Posts() {
   }
 
   return (
-    <section className="page-shell feed-page">
+    <section className="page-shell feed-page animate-fade-up">
       <SectionHeader eyebrow="Community feed" title="Share wins, ideas, questions, and startup progress">
         A professional student founder feed for updates, collaboration requests, event recaps, and practical lessons from building.
       </SectionHeader>
@@ -57,7 +57,7 @@ function Posts() {
       {message && <p className="alert">{message}</p>}
 
       <div className="feed-layout">
-        <aside className="create-post-panel">
+        <aside className="create-post-panel animate-fade-up stagger-2">
           <div className="panel-card sticky-card">
             <p className="eyebrow">Create post</p>
             <h3>Start a conversation</h3>
@@ -72,7 +72,7 @@ function Posts() {
         </aside>
 
         <div className="feed-grid">
-          {posts.length ? posts.map((post) => <PostCard key={post.id} post={post} />) : (
+          {posts.length ? posts.map((post, index) => <PostCard key={post.id} post={post} animationClass={`stagger-${(index % 4) + 1}`} />) : (
             <EmptyState title="No posts yet">Create the first community update for your chapter.</EmptyState>
           )}
         </div>

@@ -8,6 +8,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
+  const navClass = (staggerClass) => ({ isActive }) => `${staggerClass} ${isActive ? 'active' : ''}`
 
   const handleLogout = async () => {
     try {
@@ -21,8 +22,8 @@ function Navbar() {
   }
 
   return (
-    <header className="navbar">
-      <Link className="brand" to="/" onClick={closeMenu}>
+    <header className="navbar animate-slide-down">
+      <Link className="brand brand-animated" to="/" onClick={closeMenu}>
         <span className="brand-mark">FFN</span>
         <span>Future Founders Network</span>
       </Link>
@@ -41,19 +42,19 @@ function Navbar() {
 
       <div className={`nav-panel ${menuOpen ? 'open' : ''}`}>
         <nav className="nav-links" aria-label="Primary navigation">
-          <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-          <NavLink to="/about" onClick={closeMenu}>About</NavLink>
-          <NavLink to="/chapters" onClick={closeMenu}>Chapters</NavLink>
-          <NavLink to="/events" onClick={closeMenu}>Events</NavLink>
-          <NavLink to="/posts" onClick={closeMenu}>Posts</NavLink>
+          <NavLink className={navClass('stagger-1')} to="/" onClick={closeMenu}>Home</NavLink>
+          <NavLink className={navClass('stagger-2')} to="/about" onClick={closeMenu}>About</NavLink>
+          <NavLink className={navClass('stagger-3')} to="/chapters" onClick={closeMenu}>Chapters</NavLink>
+          <NavLink className={navClass('stagger-4')} to="/events" onClick={closeMenu}>Events</NavLink>
+          <NavLink className={navClass('stagger-4')} to="/posts" onClick={closeMenu}>Posts</NavLink>
           {isAuthenticated() && (
             <>
-              <NavLink to="/dashboard" onClick={closeMenu}>Dashboard</NavLink>
-              <NavLink to="/membership" onClick={closeMenu}>Membership</NavLink>
-              <NavLink to="/profile" onClick={closeMenu}>Profile</NavLink>
+              <NavLink className={navClass('stagger-1')} to="/dashboard" onClick={closeMenu}>Dashboard</NavLink>
+              <NavLink className={navClass('stagger-2')} to="/membership" onClick={closeMenu}>Membership</NavLink>
+              <NavLink className={navClass('stagger-3')} to="/profile" onClick={closeMenu}>Profile</NavLink>
             </>
           )}
-          {isAdmin() && <NavLink to="/admin/dashboard" onClick={closeMenu}>Admin</NavLink>}
+          {isAdmin() && <NavLink className={navClass('stagger-4')} to="/admin/dashboard" onClick={closeMenu}>Admin</NavLink>}
         </nav>
 
         <div className="nav-actions">

@@ -32,13 +32,13 @@ function Login() {
   return (
     <section className="auth-page auth-animated">
       <div className="auth-card-wrap compact">
-        <div className="auth-copy">
+        <div className="auth-copy animate-fade-up stagger-1">
           <p className="eyebrow">Welcome back</p>
           <h1>Login to your network.</h1>
           <p>Access your dashboard, profile, events, chapters, posts, and membership tools.</p>
         </div>
 
-        <form className="form-card auth-card" onSubmit={handleSubmit}>
+        <form className="form-card auth-card animate-scale-in stagger-2" onSubmit={handleSubmit}>
           <p className="eyebrow">Sign in</p>
           <h2>Login</h2>
           {message && <p className="alert error">{message}</p>}
