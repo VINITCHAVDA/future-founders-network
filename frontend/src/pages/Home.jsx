@@ -6,13 +6,7 @@ import EventCard from '../components/EventCard'
 import FeatureCard from '../components/FeatureCard'
 import PostCard from '../components/PostCard'
 import SectionHeader from '../components/SectionHeader'
-
-const sampleStats = [
-  { label: 'Students', value: '2,400+' },
-  { label: 'Chapters', value: '35+' },
-  { label: 'Events', value: '120+' },
-  { label: 'Posts', value: '850+' },
-]
+import StatsSection from '../components/StatsSection'
 
 const sampleChapters = [
   { id: 'sample-1', name: 'Campus Founders Club', city: 'New York', description: 'A hands-on chapter for students building first products and finding co-founders.', status: 'active', events_count: 8, chapter_members_count: 180 },
@@ -74,14 +68,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="stats-strip" aria-label="Platform statistics">
-        {sampleStats.map((stat) => (
-          <div className="stat-card dark" key={stat.label}>
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </div>
-        ))}
-      </section>
+      <StatsSection />
 
       {notice && <section className="section notice-section"><p className="alert">{notice}</p></section>}
 
