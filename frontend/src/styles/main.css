@@ -224,8 +224,8 @@ h3 { font-size: 1.18rem; letter-spacing: -0.02em; margin-bottom: 8px; }
   margin-bottom: 16px;
   width: 54px;
 }
-.stat-card strong { color: var(--gold); display: block; font-size: clamp(2rem, 4vw, 3.1rem); letter-spacing: -0.055em; line-height: 1; }
-.stat-card span:not(.stat-icon) { color: var(--muted); display: block; font-weight: 900; margin-top: 8px; }
+.stat-number { color: var(--gold); display: block; font-size: clamp(2rem, 4vw, 3.1rem); font-variant-numeric: tabular-nums; font-weight: 950; letter-spacing: -0.055em; line-height: 1; }
+.stat-label { color: var(--muted); display: block; font-weight: 900; margin-top: 8px; }
 
 .grid { display: grid; gap: 22px; }
 .grid > *, .stats-cards > *, .footer-grid > *, .feed-layout > *, .split-section > * { min-width: 0; }
@@ -519,6 +519,7 @@ th { background: rgba(255, 255, 255, 0.04); color: var(--gold); font-size: 0.86r
   input, textarea, select { min-height: 44px; }
   .btn { padding-inline: 14px; }
   .post-actions span, .tag-row span, .event-meta span, .metric-row span { font-size: 0.82rem; }
+  .stat-number { font-size: 1.9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
