@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { clearAuth, getCurrentUser, isAuthenticated, isAdmin, logout } from '../services/authService'
 
 function Navbar() {
   const navigate = useNavigate()
   const user = getCurrentUser()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => setMenuOpen(false)
 
   const handleLogout = async () => {
     try {
@@ -12,46 +16,61 @@ function Navbar() {
       clearAuth()
     }
 
+    closeMenu()
     navigate('/login')
   }
 
   return (
     <header className="navbar">
-      <Link className="brand" to="/">
+      <Link className="brand" to="/" onClick={closeMenu}>
         <span className="brand-mark">FFN</span>
         <span>Future Founders Network</span>
       </Link>
 
-      <nav className="nav-links">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/chapters">Chapters</NavLink>
-        <NavLink to="/events">Events</NavLink>
-        <NavLink to="/posts">Posts</NavLink>
-        {isAuthenticated() && (
-          <>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/membership">Membership</NavLink>
-            <NavLink to="/profile">Profile</NavLink>
-          </>
-        )}
-        {isAdmin() && <NavLink to="/admin/dashboard">Admin</NavLink>}
-      </nav>
+      <button
+        aria-label="Toggle navigation menu"
+        aria-expanded={menuOpen}
+        className={`menu-toggle ${menuOpen ? 'active' : ''}`}
+        type="button"
+        onClick={() => setMenuOpen((current) => !current)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <div className="nav-actions">
-        {isAuthenticated() ? (
-          <>
-            <span className="user-pill">{user?.name}</span>
-            <button className="btn btn-ghost" type="button" onClick={handleLogout}>
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link className="btn btn-ghost" to="/login">Login</Link>
-            <Link className="btn btn-primary" to="/register">Join Now</Link>
-          </>
-        )}
+      <div className={`nav-panel ${menuOpen ? 'open' : ''}`}>
+        <nav className="nav-links" aria-label="Primary navigation">
+          <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+          <NavLink to="/about" onClick={closeMenu}>About</NavLink>
+          <NavLink to="/chapters" onClick={closeMenu}>Chapters</NavLink>
+          <NavLink to="/events" onClick={closeMenu}>Events</NavLink>
+          <NavLink to="/posts" onClick={closeMenu}>Posts</NavLink>
+          {isAuthenticated() && (
+            <>
+              <NavLink to="/dashboard" onClick={closeMenu}>Dashboard</NavLink>
+              <NavLink to="/membership" onClick={closeMenu}>Membership</NavLink>
+              <NavLink to="/profile" onClick={closeMenu}>Profile</NavLink>
+            </>
+          )}
+          {isAdmin() && <NavLink to="/admin/dashboard" onClick={closeMenu}>Admin</NavLink>}
+        </nav>
+
+        <div className="nav-actions">
+          {isAuthenticated() ? (
+            <>
+              <span className="user-pill">{user?.name || 'Member'}</span>
+              <button className="btn btn-ghost" type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className="btn btn-ghost" to="/login" onClick={closeMenu}>Login</Link>
+              <Link className="btn btn-primary" to="/register" onClick={closeMenu}>Join Now</Link>
+            </>
+          )}
+        </div>
       </div>
     </header>
   )
