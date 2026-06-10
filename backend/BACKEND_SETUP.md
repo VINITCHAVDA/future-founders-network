@@ -51,3 +51,56 @@ Use `http://127.0.0.1:8000/api` as the base URL.
 14. Approve Membership: `PUT /admin/memberships/{id}/approve`
 
 For protected user and admin requests, set `Authorization: Bearer <token>`.
+
+
+## Password reset email testing
+
+For local password reset testing, use the log mailer so reset emails are written to `storage/logs/laravel.log` instead of being sent to a real inbox:
+
+```env
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS="no-reply@futurefounders.test"
+MAIL_FROM_NAME="Future Founders Network"
+```
+
+After changing mail settings, clear cached config and restart the API:
+
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan serve
+```
+
+Then submit `POST /api/forgot-password` or use the React `/forgot-password` page and inspect the reset link:
+
+```bash
+tail -f storage/logs/laravel.log
+```
+
+For real email delivery, configure an SMTP provider such as Mailtrap:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_mailtrap_username
+MAIL_PASSWORD=your_mailtrap_password
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="no-reply@futurefounders.com"
+MAIL_FROM_NAME="Future Founders Network"
+```
+
+For Gmail SMTP, use a Google App Password rather than your normal Gmail password:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your_gmail@gmail.com
+MAIL_PASSWORD=your_google_app_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your_gmail@gmail.com
+MAIL_FROM_NAME="Future Founders Network"
+```
+
+If your mail notification is queued, run `php artisan queue:work`. Also check spam/promotions folders when using real SMTP.

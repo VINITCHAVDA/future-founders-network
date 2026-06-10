@@ -10,9 +10,11 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Throwable;
 
 class AuthController extends Controller
 {
@@ -69,8 +71,20 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
         ]);
 
-        $status = Password::sendResetLink([
+        try {
+            $status = Password::sendResetLink($request->only('email'));
+        } catch (Throwable $exception) {
+            Log::error('Password reset email failed to send.', [
+                'email' => $validated['email'],
+                'error' => $exception->getMessage(),
+            ]);
+
+            return $this->error('Password reset email could not be sent. Please check mail settings and try again.', [], 500);
+        }
+
+        Log::info('Password reset link request completed.', [
             'email' => $validated['email'],
+            'status' => $status,
         ]);
 
         if ($status === Password::RESET_LINK_SENT) {
