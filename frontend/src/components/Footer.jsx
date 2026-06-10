@@ -24,9 +24,15 @@ function Footer() {
 
       <div className="footer-grid">
         <section className="footer-card footer-brand-card animate-fade-up stagger-1">
-          <Link className="brand footer-brand" to="/">
-            <span className="brand-mark">FFN</span>
-            <span>Future Founders Network</span>
+          <Link className="brand logo-link footer-brand" to="/" aria-label="Future Founders Network home">
+            <span className="logo-badge" aria-hidden="true">
+              <span className="logo-orbit"></span>
+              <span className="logo-initials">FFN</span>
+            </span>
+            <span className="logo-text">
+              <span className="logo-title">Future Founders Network</span>
+              <span className="logo-tagline">Student Startup Network</span>
+            </span>
           </Link>
           <p>
             A student startup and business networking platform connecting future entrepreneurs, founders, mentors, and communities.
