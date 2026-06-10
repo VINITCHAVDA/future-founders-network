@@ -32,6 +32,81 @@ body {
     var(--bg);
 }
 a { color: inherit; text-decoration: none; }
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  will-change: transform, opacity;
+  z-index: 9999;
+}
+
+.custom-cursor-dot {
+  background: var(--gold);
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(247, 201, 72, 0.72), 0 0 28px rgba(247, 201, 72, 0.28);
+  height: 8px;
+  transition: opacity 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  width: 8px;
+}
+
+.custom-cursor-ring {
+  background: rgba(247, 201, 72, 0.06);
+  border: 1px solid rgba(247, 201, 72, 0.58);
+  border-radius: 999px;
+  box-shadow: 0 0 34px rgba(247, 201, 72, 0.18), inset 0 0 18px rgba(247, 201, 72, 0.06);
+  height: 38px;
+  transition: opacity 0.18s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  width: 38px;
+}
+
+.custom-cursor-dot.cursor-visible,
+.custom-cursor-ring.cursor-visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot.cursor-hover {
+  background: #ffe28a;
+  box-shadow: 0 0 18px rgba(247, 201, 72, 0.9), 0 0 34px rgba(247, 201, 72, 0.42);
+}
+
+.custom-cursor-ring.cursor-hover {
+  background: rgba(247, 201, 72, 0.12);
+  border-color: rgba(255, 226, 138, 0.9);
+  box-shadow: 0 0 42px rgba(247, 201, 72, 0.34), inset 0 0 24px rgba(247, 201, 72, 0.12);
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  body.custom-cursor-enabled,
+  body.custom-cursor-enabled a,
+  body.custom-cursor-enabled button,
+  body.custom-cursor-enabled [role="button"] {
+    cursor: none;
+  }
+
+  body.custom-cursor-enabled input,
+  body.custom-cursor-enabled textarea,
+  body.custom-cursor-enabled select {
+    cursor: text;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none;
+  }
+}
 button, input, textarea, select { font: inherit; }
 main { min-height: calc(100vh - 180px); overflow-x: clip; }
 img, svg, video, canvas { display: block; max-width: 100%; }
