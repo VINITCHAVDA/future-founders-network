@@ -5,6 +5,7 @@ import FloatingBubble from './components/FloatingBubble'
 import CustomCursor from './components/CustomCursor'
 import AppRoutes from './routes/AppRoutes'
 import './styles/main.css'
+import './styles/style.css'
 
 function App() {
   return (

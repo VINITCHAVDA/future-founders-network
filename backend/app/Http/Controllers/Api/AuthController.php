@@ -72,18 +72,14 @@ class AuthController extends Controller
         ]);
 
         try {
-            $status = Password::sendResetLink([
-                'email' => $validated['email'],
-            ]);
+            $status = Password::sendResetLink($request->only('email'));
         } catch (Throwable $exception) {
             Log::error('Password reset email failed to send.', [
                 'email' => $validated['email'],
                 'error' => $exception->getMessage(),
             ]);
 
-            return $this->error('Password reset email could not be sent. Please verify the Gmail SMTP settings and try again.', [
-                'email' => ['Password reset email could not be sent. Check storage/logs/laravel.log for SMTP details.'],
-            ], 500);
+            return $this->error('Password reset email could not be sent. Please check mail settings and try again.', [], 500);
         }
 
         Log::info('Password reset link request completed.', [
@@ -95,14 +91,8 @@ class AuthController extends Controller
             return $this->success('Password reset link sent. Please check your email.');
         }
 
-        if ($status === Password::INVALID_USER) {
-            return $this->error('No account was found for that email address.', [
-                'email' => [__($status)],
-            ], 422);
-        }
-
-        return $this->error('Unable to send password reset link.', [
-            'email' => [__($status)],
+        return $this->error('Unable to process this password reset request. Please verify your email and try again.', [
+            'email' => ['Unable to process this password reset request.'],
         ], 422);
     }
 

@@ -13,8 +13,14 @@ const hoverSelector = [
   '.chapter-card',
   '.event-card',
   '.post-card',
+  '.post-feed-card',
   '.auth-card',
   '.form-card',
+  '.stat-card',
+  '.story-card',
+  '.footer-card',
+  '.panel-card',
+  '.table-card',
 ].join(', ')
 
 function CustomCursor() {
@@ -27,6 +33,7 @@ function CustomCursor() {
   const ringScale = useRef(1)
   const dotScale = useRef(1)
   const [isEnabled, setIsEnabled] = useState(false)
+  const isVisibleRef = useRef(false)
   const [isHovering, setIsHovering] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -57,8 +64,18 @@ function CustomCursor() {
     document.body.classList.add('custom-cursor-enabled')
 
     const moveCursor = (event) => {
-      mousePosition.current = { x: event.clientX, y: event.clientY }
-      setIsVisible(true)
+      const nextPosition = { x: event.clientX, y: event.clientY }
+
+      if (!isVisibleRef.current) {
+        ringPosition.current = nextPosition
+      }
+
+      mousePosition.current = nextPosition
+
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true
+        setIsVisible(true)
+      }
       const shouldHover = event.target instanceof Element && Boolean(event.target.closest(hoverSelector))
 
       if (hoverState.current !== shouldHover) {
@@ -68,6 +85,7 @@ function CustomCursor() {
     }
 
     const hideCursor = () => {
+      isVisibleRef.current = false
       setIsVisible(false)
       hoverState.current = false
       setIsHovering(false)
