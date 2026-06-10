@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\User;
 use App\Traits\ApiResponse;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -58,6 +61,56 @@ class AuthController extends Controller
         $token = $user->createToken($user->role.'-api-token')->plainTextToken;
 
         return $this->success('Login successful.', ['user' => $user->load('profile'), 'token' => $token]);
+    }
+
+    public function forgotPassword(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'email' => ['required', 'email'],
+        ]);
+
+        $status = Password::sendResetLink([
+            'email' => $validated['email'],
+        ]);
+
+        if ($status === Password::RESET_LINK_SENT) {
+            return $this->success('Password reset link sent. Please check your email.');
+        }
+
+        return $this->error('Unable to process this password reset request. Please verify your email and try again.', [
+            'email' => ['Unable to process this password reset request.'],
+        ], 422);
+    }
+
+    public function resetPassword(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'token' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $status = Password::reset(
+            $validated,
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password),
+                    'remember_token' => Str::random(60),
+                ])->save();
+
+                $user->tokens()->delete();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        if ($status === Password::PASSWORD_RESET) {
+            return $this->success('Password reset successful. You can now login with your new password.');
+        }
+
+        return $this->error('Unable to reset password. Please verify your email and reset token.', [
+            'email' => [__($status)],
+        ], 422);
     }
 
     public function logout(Request $request): JsonResponse

@@ -7,12 +7,14 @@ import Connections from '../pages/Connections'
 import Dashboard from '../pages/Dashboard'
 import EditProfile from '../pages/EditProfile'
 import Events from '../pages/Events'
+import ForgotPassword from '../pages/ForgotPassword'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Membership from '../pages/Membership'
 import Posts from '../pages/Posts'
 import Profile from '../pages/Profile'
 import Register from '../pages/Register'
+import ResetPassword from '../pages/ResetPassword'
 import AdminDashboard from '../admin/AdminDashboard'
 import AdminLogin from '../admin/AdminLogin'
 import ManageChapters from '../admin/ManageChapters'
@@ -27,6 +29,8 @@ function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/register" element={<Register />} />
       <Route path="/chapters" element={<Chapters />} />
       <Route path="/events" element={<Events />} />

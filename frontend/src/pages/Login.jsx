@@ -50,6 +50,9 @@ function Login() {
             Password
             <input type="password" placeholder="Your password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
           </label>
+          <div className="auth-form-meta">
+            <Link className="auth-inline-link" to="/forgot-password">Forgot Password?</Link>
+          </div>
           <button className="btn btn-primary full" type="submit" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
           <p className="auth-switch">New here? <Link to="/register">Create an account</Link></p>
         </form>

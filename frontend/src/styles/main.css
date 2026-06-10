@@ -806,6 +806,51 @@ textarea { resize: vertical; }
   }
 }
 
+.auth-form-meta {
+  display: flex;
+  justify-content: flex-end;
+  margin: -4px 0 16px;
+}
+
+.auth-inline-link {
+  color: var(--gold);
+  font-size: 0.92rem;
+  font-weight: 900;
+  position: relative;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.auth-inline-link::after {
+  background: var(--gold);
+  bottom: -3px;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.auth-inline-link:hover,
+.auth-inline-link:focus-visible {
+  color: #ffe08a;
+  transform: translateY(-1px);
+}
+
+.auth-inline-link:hover::after,
+.auth-inline-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 480px) {
+  .auth-form-meta {
+    justify-content: flex-start;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
